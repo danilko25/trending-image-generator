@@ -1,0 +1,49 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+  kafka:
+    bootstrap-servers: localhost:19092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      backoff:
+        ms: 2000
+    listener:
+      auto-startup: false
+
+  ai:
+    openai:
+      api-key: test-key
+
+fal:
+  generation-model-endpoint: fal-ai/flux-2/klein/9b
+  remove-background-model-endpoint: fal-ai/birefnet/v2
+  upscale-model-endpoint: fal-ai/esrgan
+
+image-prompt:
+  generation:
+    topic: internal.image-prompt.command.generation
+
+image:
+  generation:
+    topic: internal.image.command.generation
+
+subtask:
+  generation:
+    topic: internal.subtask.command.generation
+
+task:
+  generation:
+    topic: internal.task.command.generation
+
+parallel:
+  connections:
+    count: 10
+
